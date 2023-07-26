@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      .container {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+      }
+      .square {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        background-color: red;
+      }
+      .top-left {
+        top: 0;
+        left: 0;
+      }
+      .top-right {
+        top: 0;
+        right: 0;
+      }
+      .bottom-left {
+        bottom: 0;
+        left: 0;
+      }
+      .bottom-right {
+        bottom: 0;
+        right: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div id="square1" class="square top-left"></div>
+      <div id="square2" class="square top-right"></div>
+      <div id="square3" class="square bottom-left"></div>
+      <div id="square4" class="square bottom-right"></div>
+    </div>
+    <script>
+      var squareElement1 = document.getElementById("square1");
+      var leftPosition1 = 0;
+      var topPosition1 = 0;
+
+      var squareElement2 = document.getElementById("square2");
+      var leftPosition2 = window.innerWidth - squareElement2.offsetWidth;
+      var topPosition2 = 0;
+
+      var squareElement3 = document.getElementById("square3");
+      var leftPosition3 = 0;
+      var topPosition3 = window.innerHeight - squareElement3.offsetHeight;
+
+      var squareElement4 = document.getElementById("square4");
+      var leftPosition4 = window.innerWidth - squareElement4.offsetWidth;
+      var topPosition4 = window.innerHeight - squareElement4.offsetHeight;
+
+      function moveSquare(a, leftPosition, topPosition) {
+        var interval = setInterval(() => { // sağa git
+          if (leftPosition < window.innerWidth - a.offsetWidth && topPosition <= 0) {
+            leftPosition += 5;
+            a.style.left = leftPosition + "px";
+          } else if (//aşağı git
+            leftPosition >= window.innerWidth - a.offsetWidth &&
+            topPosition < window.innerHeight - a.offsetHeight
+          ) {
+            topPosition += 5;
+            a.style.top = topPosition + "px";
+          } else if (leftPosition > 0 && topPosition >= window.innerHeight - a.offsetHeight) {//sola
+            leftPosition -= 5;
+            a.style.left = leftPosition + "px";
+          } else if (leftPosition <= 0 && topPosition > 0) {//yukarı
+            topPosition -= 5;
+            a.style.top = topPosition + "px";
+          }
+        }, 10);
+      }
+
+      moveSquare(squareElement1, leftPosition1, topPosition1);
+      moveSquare(squareElement2, leftPosition2, topPosition2);
+      moveSquare(squareElement3, leftPosition3, topPosition3);
+      moveSquare(squareElement4, leftPosition4, topPosition4);
+    </script>
+  </body>
+</html>

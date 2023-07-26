@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    #square {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+  <div id="square"></div>
+
+  <script>
+    var squareElement = document.getElementById("square");
+    var leftPosition = 0;
+    var topPosition = 0;
+
+    function moveSquare() {
+      var interval = setInterval(() => {
+        if (leftPosition < window.innerWidth - squareElement.offsetWidth && topPosition == 0) {
+          leftPosition += 5;
+          squareElement.style.left = leftPosition + "px";
+        }
+      }, 1);
+    }
+
+    moveSquare();
+  </script>
+</body>
+</html>
